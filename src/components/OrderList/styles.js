@@ -1,11 +1,17 @@
 import styled from 'styled-components';
 
+export const OrderListContainer = styled.div`
+
+`;
+
 export const OrderList = styled.div`
   background: var(--white);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
   border-radius: 5px;
   padding: 20px;
   margin-bottom: 50px;
+  overflow-x: auto;
+  white-space: nowrap;
 
   span {
     font-size: 1rem;
@@ -13,25 +19,25 @@ export const OrderList = styled.div`
     font-weight: bold;
 
     &:nth-child(1) {
-      width: 15%;
+      min-width: 140px;
     }
     &:nth-child(2) {
-      width: 15%;
+      min-width: 120px;
     }
     &:nth-child(3) {
-      width: 20%;
+      min-width: 170px;
     }
     &:nth-child(4) {
-      width: 15%;
+      min-width: 120px;
     }
     &:nth-child(5) {
-      width: 15%;
+      min-width: 140px;
     }
     &:nth-child(6) {
-      width: 15%;
+      min-width: 160px;
     }
     &:nth-child(7) {
-      width: 5%;
+      min-width: 50px;
     }
   }
 
@@ -42,35 +48,9 @@ export const OrderList = styled.div`
     align-items: center;
     justify-content: center;
   }
-`;
 
-export const OrderListHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  margin-bottom: 20px;
-`;
-
-
-export const OrderListItem = styled.div`
-  > a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    border-bottom: 1px solid #EEEEEE;
-
-    padding: 20px 0;
-    color: var(--text-table);
-
-    transition: background .2s;
-
-    &:hover {
-      background: rgba(0,0,0,0.02)
-    }
-
-    p {
+  @media (min-width: 768px) {
+    span {
       &:nth-child(1) {
         width: 15%;
       }
@@ -94,9 +74,92 @@ export const OrderListItem = styled.div`
       }
     }
   }
+`;
 
-  &:last-child a {
+export const OrderListHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+`;
+
+
+export const OrderListItem = styled.div`
+  > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: var(--text-table);
+
+    transition: background .2s;
+
+    &:hover p {
+      background: rgba(0,0,0,0.02)
+    }
+
+    p {
+      border-bottom: 1px solid #EEEEEE;
+      height: 70px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+
+      &:nth-child(1) {
+        min-width: 140px;
+      }
+      &:nth-child(2) {
+        min-width: 120px;
+      }
+      &:nth-child(3) {
+        min-width: 170px;
+      }
+      &:nth-child(4) {
+        min-width: 120px;
+      }
+      &:nth-child(5) {
+        min-width: 140px;
+      }
+      &:nth-child(6) {
+        min-width: 160px;
+      }
+      &:nth-child(7) {
+        min-width: 50px;
+      }
+    }
+  }
+
+  &:last-child a p {
     border-bottom: 0;
+  }
+
+  @media (min-width: 768px) {
+    > a {
+      p {
+        &:nth-child(1) {
+          width: 15%;
+        }
+        &:nth-child(2) {
+          width: 15%;
+        }
+        &:nth-child(3) {
+          width: 20%;
+        }
+        &:nth-child(4) {
+          width: 15%;
+        }
+        &:nth-child(5) {
+          width: 15%;
+        }
+        &:nth-child(6) {
+          width: 15%;
+        }
+        &:nth-child(7) {
+          width: 5%;
+        }
+      }
+    }
   }
 `;
 
@@ -119,7 +182,7 @@ export const Filters = styled.div`
       padding: 10px;
       background: var(--white);
       padding-right: 40px;
-      width: 250px;
+      width: 200px;
     }
 
     svg {
@@ -133,7 +196,6 @@ export const Filters = styled.div`
     color: var(--white);
     border: 2px solid var(--orange);
     border-radius: 4px;
-    margin-left: 40px;
 
     width: 120px;
     height: 40px;
@@ -151,6 +213,14 @@ export const Filters = styled.div`
       background: var(--white);
       color: var(--orange);
       border: 2px solid var(--orange);
+    }
+  }
+
+  @media (min-width: 768px) {
+    form {
+      input {
+        width: 260px;
+      }
     }
   }
 `;

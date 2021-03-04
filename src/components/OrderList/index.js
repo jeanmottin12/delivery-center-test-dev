@@ -9,7 +9,13 @@ import { GET_ORDERS_SHORT } from '../../utils/ordersQuery';
 
 import Loading from '../../components/Loading';
 
-import { OrderList, OrderListItem, OrderListHeader, Filters } from './styles';
+import {
+  OrderList,
+  OrderListItem,
+  OrderListHeader,
+  Filters,
+  OrderListContainer
+} from './styles';
 
 export default function OrdersList() {
   const { loading, error, data } = useQuery(GET_ORDERS_SHORT);
@@ -65,34 +71,36 @@ export default function OrdersList() {
       )}
 
       {!loading && (
-        <OrderList>
-          <OrderListHeader>
-            <span>ID do pedido</span>
-            <span>lojista</span>
-            <span>Data de criação</span>
-            <span>cliente</span>
-            <span>Total</span>
-            <span>Valor pendente</span>
-            <span></span>
-          </OrderListHeader>
-          {orders.length > 0 ? orders.map(order => (
-            <OrderListItem key={order._id}>
-              <Link to={`/order-detail/${order._id}`}>
-                <p><strong>{`#${order.reference}`}</strong></p>
-                <p>{order.store}</p>
-                <p>20/03/2021</p>
-                <p>{order.customer.name}</p>
-                <p>{formatToCurrency(order.amount + order.deliveryFee)}</p>
-                <p>10</p>
-                <p><FiChevronRight size={24}/></p>
-              </Link>
-            </OrderListItem>
-          )) : (
-            <div className="no-orders">
-              <h3>Nenhum pedido encontrado.</h3>
-            </div>
-          )}
-        </OrderList>
+        <OrderListContainer>
+          <OrderList>
+            <OrderListHeader>
+              <span>ID do pedido</span>
+              <span>lojista</span>
+              <span>Data de criação</span>
+              <span>cliente</span>
+              <span>Total</span>
+              <span>Valor pendente</span>
+              <span></span>
+            </OrderListHeader>
+            {orders.length > 0 ? orders.map(order => (
+              <OrderListItem key={order._id}>
+                <Link to={`/order-detail/${order._id}`}>
+                  <p><strong>{`#${order.reference}`}</strong></p>
+                  <p>{order.store}</p>
+                  <p>20/03/2021</p>
+                  <p>{order.customer.name}</p>
+                  <p>{formatToCurrency(order.amount + order.deliveryFee)}</p>
+                  <p>10</p>
+                  <p><FiChevronRight size={24}/></p>
+                </Link>
+              </OrderListItem>
+            )) : (
+              <div className="no-orders">
+                <h3>Nenhum pedido encontrado.</h3>
+              </div>
+            )}
+          </OrderList>
+        </OrderListContainer>
       )}
     </div>
   )

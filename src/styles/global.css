@@ -14,22 +14,6 @@
   --error: #ff0000;
 }
 
-/* html {
-  font-size: 62.5%;
-} */
-
-/* @media (max-width: 720px) {
-  html {
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 1080px) {
-  html {
-    font-size: 15px;
-  }
-} */
-
 body, input, textarea, button {
   font: 400 1rem "Roboto", sans-serif;
   color: var(--text);

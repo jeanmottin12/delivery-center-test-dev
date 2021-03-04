@@ -25,8 +25,8 @@ export const Box = styled.div`
 
   .field-3 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0
   }
 
   button {
@@ -52,6 +52,14 @@ export const Box = styled.div`
       background: var(--white);
       color: var(--orange);
       border: 2px solid var(--orange);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .field-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px
     }
   }
 `;
