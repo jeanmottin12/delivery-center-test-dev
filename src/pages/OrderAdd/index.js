@@ -9,18 +9,17 @@ import Select from "../../components/Form/Select";
 
 import { Box } from './styles';
 
-const ADD_ORDER = gql`
-  mutation CreateOrder($store: String!) {
-    createOrder(store: $store) {
-      _id
-      store
-    }
-  }
-`;
+// const ADD_ORDER = gql`
+//   mutation CreateOrder($store: String!) {
+//     createOrder(store: $store) {
+//       _id
+//       store
+//     }
+//   }
+// `;
 
 export default function OrderAdd() {
-  let input;
-  const [addOrder, { data }] = useMutation(ADD_ORDER);
+  // const [addOrder, { data }] = useMutation(ADD_ORDER);
 
   return (
     <>
