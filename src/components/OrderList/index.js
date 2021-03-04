@@ -45,28 +45,24 @@ export default function OrdersList() {
       {loading && <Loading />}
       {error && (<p>Estamos com problemas, tente novamente...</p>)}
 
-      <Filters>
-        <form onSubmit={handleSearch}>
-          <input
-            type="text"
-            value={searchTerm}
-            placeholder="Pesquise por cliente"
-            onChange={e => setSearchTerm(e.target.value)}
-          />
-          <FiSearch size={24} />
-        </form>
+      {!loading && (
+        <Filters>
+          <form onSubmit={handleSearch}>
+            <input
+              type="text"
+              value={searchTerm}
+              placeholder="Pesquise por cliente"
+              onChange={e => setSearchTerm(e.target.value)}
+            />
+            <FiSearch size={24} />
+          </form>
 
-        <Link to="/orders/add">
-          <FiPlus size={24} />
-          Cadastrar
-        </Link>
-      </Filters>
-
-      {/* {!loading && (
-        <>
-          {orders && orders.map((item, index) => <p key={index}>{item.customer.name}</p>)}
-        </>
-      )} */}
+          <Link to="/order/add">
+            <FiPlus size={24} />
+            Cadastrar
+          </Link>
+        </Filters>
+      )}
 
       {!loading && (
         <OrderList>

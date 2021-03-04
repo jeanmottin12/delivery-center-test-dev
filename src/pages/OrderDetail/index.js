@@ -13,7 +13,6 @@ import { formatToCurrency } from '../../utils/convertMoney';
 
 import { ContainerCard, Card} from './styles';
 
-
 export default function OrderDetail() {
   const { id } = useParams();
   const { loading, error, data } = useQuery(GET_ORDERS);

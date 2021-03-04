@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import * as Yup from 'yup';
 
+import Input from '../../components/Form/Input';
+
 import { FiLogIn } from 'react-icons/fi';
 
 import { Container } from './styles';
@@ -61,19 +63,19 @@ export default function SignIn() {
       <form onSubmit={handleSignIn}>
         <h1>Login</h1>
 
-        <label htmlFor="email">Email</label>
-        <input
+        <Input
           type="email"
           name="email"
           id="email"
+          label="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <label htmlFor="password">Senha</label>
-        <input
+        <Input
           type="password"
           name="password"
           id="password"
+          label="Senha"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />

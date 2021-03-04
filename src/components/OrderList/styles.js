@@ -5,6 +5,7 @@ export const OrderList = styled.div`
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
   border-radius: 5px;
   padding: 20px;
+  margin-bottom: 50px;
 
   span {
     font-size: 1rem;
