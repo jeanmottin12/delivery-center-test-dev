@@ -46,6 +46,11 @@ export const GET_ORDERS_SHORT = gql`
       customer {
         name
       }
+      payments {
+        _id
+        method
+        amount
+      }
     }
   }
 `;

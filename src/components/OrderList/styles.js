@@ -1,7 +1,43 @@
 import styled from 'styled-components';
 
 export const OrderListContainer = styled.div`
+  .view-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
 
+    button {
+      background: var(--orange);
+      color: var(--white);
+      border: 2px solid var(--orange);
+      border-radius: 4px;
+      margin-top: 20px;
+
+      width: 220px;
+      height: 50px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s;
+
+      svg {
+        margin-right: 10px;
+      }
+
+      &:hover {
+        background: var(--white);
+        color: var(--orange);
+        border: 2px solid var(--orange);
+      }
+    }
+
+    p {
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+  }
 `;
 
 export const OrderList = styled.div`

@@ -10,6 +10,7 @@ import Loading from '../../components/Loading';
 
 import { GET_ORDERS } from '../../utils/ordersQuery';
 import { formatToCurrency } from '../../utils/convertMoney';
+import { pendingValue } from '../../utils/pendingValue';
 
 import { ContainerCard, Card} from './styles';
 
@@ -29,7 +30,6 @@ export default function OrderDetail() {
 
     setOrderData(order);
 
-    console.log(order);
   }, [id, orderData, data?.orders]);
 
   return (
@@ -109,6 +109,7 @@ export default function OrderDetail() {
               </p>
               <p>
                 <strong>Valor pendente:</strong>
+                {formatToCurrency(pendingValue(orderData.amount, orderData.payments))}
               </p>
               <p>
                 <strong>Pagamentos</strong>

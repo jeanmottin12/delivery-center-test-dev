@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { FiChevronRight, FiSearch, FiPlus } from "react-icons/fi";
 
 import { formatToCurrency } from '../../utils/convertMoney';
+import { pendingValue } from '../../utils/pendingValue';
 import { GET_ORDERS_SHORT } from '../../utils/ordersQuery';
 
 import Loading from '../../components/Loading';
@@ -17,19 +18,44 @@ import {
   OrderListContainer
 } from './styles';
 
+const ordersPerPage = 2;
+let arrayForHoldingOrders = [];
+
 export default function OrdersList() {
   const { loading, error, data } = useQuery(GET_ORDERS_SHORT);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [orders, setOrders] = useState([]);
 
+  const [next, setNext] = useState(2);
+  const [hideLoadButton, setHideLoadButton] = useState(false);
+
+  const loopWithSlice = (start, end) => {
+    const slicedPosts = data?.orders.slice(start, end);
+    arrayForHoldingOrders = [...arrayForHoldingOrders, ...slicedPosts];
+    setOrders(arrayForHoldingOrders);
+  };
+
   useEffect(() => {
+    arrayForHoldingOrders = [];
+    setOrders([]);
+
     const orders = data?.orders;
 
     if (!orders) return;
 
     setOrders(orders);
+
+    loopWithSlice(0, ordersPerPage);
   }, [data?.orders]);
+
+  const handleShowMorePosts = () => {
+    if (orders.length === data?.orders.length) {
+      setHideLoadButton(true);
+    }
+    loopWithSlice(next, next + ordersPerPage);
+    setNext(next + ordersPerPage);
+  };
 
   function handleSearch(event){
     event.preventDefault();
@@ -39,7 +65,6 @@ export default function OrdersList() {
 
       newList = orders.filter(order => order.customer.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
-      console.log("new list: ", newList);
       setOrders(newList);
     } else {
       setOrders(data.orders);
@@ -89,8 +114,8 @@ export default function OrdersList() {
                   <p>{order.store}</p>
                   <p>20/03/2021</p>
                   <p>{order.customer.name}</p>
-                  <p>{formatToCurrency(order.amount + order.deliveryFee)}</p>
-                  <p>10</p>
+                  <p>{formatToCurrency(order.amount)}</p>
+                  <p>{formatToCurrency(pendingValue(order.amount, order.payments))}</p>
                   <p><FiChevronRight size={24}/></p>
                 </Link>
               </OrderListItem>
@@ -100,6 +125,20 @@ export default function OrdersList() {
               </div>
             )}
           </OrderList>
+
+          <div className="view-more">
+            {orders.length > 1 && !hideLoadButton ? (
+              <button
+                type="button"
+                onClick={handleShowMorePosts}
+              >
+                <FiPlus size={24} />
+                Carregar Mais
+              </button>
+            ) : (
+              <p>Sem mais pedidos para mostrar!</p>
+            )}
+          </div>
         </OrderListContainer>
       )}
     </div>

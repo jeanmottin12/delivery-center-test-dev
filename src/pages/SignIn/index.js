@@ -26,8 +26,6 @@ export default function SignIn() {
         password: password
       };
 
-      console.log(data);
-
       const schema = Yup.object().shape({
         email: Yup.string()
           .required('E-mail obrigatório')
@@ -53,8 +51,6 @@ export default function SignIn() {
       });
 
       setErrors(validationErrors);
-
-      console.log(validationErrors);
     }
   }
 
